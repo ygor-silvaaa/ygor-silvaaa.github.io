@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Agu+Display&display=swap');
+
+.menu {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+ }
+
+.navegacao {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(88, 32, 178);
+    padding: 15px 0;
+ }
+a { 
+    font-family: "Agu Display", serif;
+    text-decoration: none;
+    color: white;
+    margin: 0 15px;
+ }
+#inicio {
+    margin: auto;
+    text-align: center;
+ }
+html {
+    scroll-behavior: smooth;
+}
+.menu-link {
+    position: relative;
+    text-decoration: none;
+    color:aliceblue;
+    font-weight: 500;
+}
+.menu-link::after {
+    content:'';
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgb(172, 144, 238);
+}
+.foto-perfil {
+    width: 200px;
+    height: 200px;
+    border-radius: 50% !important; /* Força a foto a ficar 100% redonda */
+    object-fit: cover;             /* Corta a imagem para caber no quadrado de 200x200 */
+    object-position: center top;   /* Foca no topo/centro da imagem, onde está o seu rosto */
+    border: 4px solid #ffffff;     /* Borda branca ao redor */
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15); /* Sombra elegante */
+    transition: transform 0.3s ease;
+}
+
+.foto-perfil:hover {
+    transform: scale(1.05);        /* Efeito de zoom ao passar o mouse */
+}
+ body  {
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease; /*adicione esta linha */
+ }
+ body.dark-mode {
+     background-color: #121212;
+     color: #ffffff;
+ }
+
+  /* Garante que os textos das seçoes tambem fiquem brancos */
+  body.dark-mode .sobre,
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode p {
+    color: #ffffff;
+  }
+ .sobre {
+    max-width: 700px;
+    margin: 25px auto;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: justify;
+ }
+ a:hover {
+    color: #ffdf00;
+    transition: color 0.3s;
+ }
+ /* --- ESTILO DA SEÇÃO DE PROJETOS --- */
+.secao-projetos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Centraliza o título "Meus Projetos" */
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.subtitulo-projetos {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* --- ESSA REGRA CRIA A GRADE LADO A LADO --- */
+.projetos-grid {
+    display: flex;
+    flex-direction: row;    /* Força os cards a ficarem na horizontal */
+    gap: 20px;              /* Dá um espaço entre o Card 1 e o Card 2 */
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;        /* Se a tela for de celular, eles quebram linha sozinhos */
+}
+
+/* --- DESIGN DOS CARDS EM BRANCO --- */
+.projeto-card.vazio {
+    background-color: #ffffff;
+    border: 2px dashed #b5b5b5; /* Cria a bordinha pontilhada estilosa */
+    border-radius: 12px;        /* Deixa os cantos do card arredondados */
+    padding: 30px;
+    width: 250px;
+    text-align: center;
+    color: #777;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); /* Sombra bem de leve */
+}
+
+.icone-card {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+/* Criando a classe que estava faltando */
+.botao-link {
+    color: #777;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+}
+/* Garante que o efeito de passar o mouse continue funcionando */
+.botao-link:hover  {
+color: #adff2f;
+}
+.efeito-digitar {
+  font-family: monospace;          /* Fonte estilo código */
+  border-right: 3px solid #adff2f;    /* Espessura do cursor piscando verde */
+  white-space: nowrap;             /* Impede o texto de pular linha */
+  overflow: hidden;                /* Esconde as letras para o efeito funcionar */
+  display: block;                  /* Garante que ocupe sua própria linha */
+  margin: 15px auto;               /* Centraliza perfeitamente no meio da tela */
+  
+  /* AJUSTE DO BUG: Definindo o tamanho exato para os passos funcionarem */
+  width: 24ch;                     /* Medida exata baseada nos 23 caracteres do texto */
+  
+  /* Animação configurada com os passos certos */
+  animation: digitar-letras 4s steps(24) infinite alternate, piscar-cursor 0.5s step-end infinite;
+}
+
+/* Animação que abre a largura da caixa de 0 até o tamanho total da frase */
+@keyframes digitar-letras {
+  from { width: 0; }
+  to { width: 24ch; }
+}
+
+/* Animação do cursor piscando no final da frase */
+@keyframes piscar-cursor {
+  from, to { border-color: transparent; }
+  50% { border-color: #adff2f; }
+}
+/* Animacao que faz o texto aparecer letra por letra */
+@keyframes digitar {
+    from {width: 0;}
+}
+/* Animacao que faz o cursor piscar */
+@keyframes piscar {
+    from, to { border-color: transparent;}
+    50% { border-color: #adff2f;}
+}
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    }
