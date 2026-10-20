@@ -148,7 +148,15 @@ html {
 .botao-link:hover  {
 color: #adff2f;
 }
-.efeito-digitar {
+.botao-link i {
+    font-size: 2rem;
+    display: inline-block;
+    transition: transform 0.2s ease;
+    }
+    .botao-link:hover i {
+        transform: scale(1.1);
+    }
+   .efeito-digitar {
   font-family: monospace;          /* Fonte estilo código */
   border-right: 3px solid #adff2f;    /* Espessura do cursor piscando verde */
   white-space: nowrap;             /* Impede o texto de pular linha */
