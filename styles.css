@@ -19,13 +19,13 @@
      }
 a { 
     font-family: "Agu Display", serif;
-    text-decoration: none;
-    color: white;
+    text-decoration: none;]
+    color: black;
     padding: 10px 24px;
     margin: 0 10px;
     font-size: 1.1rem;
     border-radius: 8px;
-    transition: all0.3s;
+    transition: all 0.3s;
  }
  a:hover {
     background-color: rgba(255, 255, 255, 0.15);
@@ -51,8 +51,7 @@ html {
     position: absolute;
     bottom: 0;
     left: 0;
-    background: rgb(172, 144, 238);
-}
+   }
 .foto-perfil {
     width: 200px;
     height: 200px;
