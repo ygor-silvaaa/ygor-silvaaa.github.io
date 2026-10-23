@@ -204,3 +204,147 @@ button {
     box-shadow: none;
     cursor: pointer;
     }
+    /* ----- Contatos: ícones lado a lado e centralizados ----- */
+.contatos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;      /* no celular, quebra linha se faltar espaço */
+    gap: 0.5rem;
+}
+/* O GitHub usa o mesmo estilo cinza dos outros ícones (.botao-link).
+   Não precisa de regra própria. */
+ 
+ 
+/* ----- Card do projeto (agora com espaçamento e fundo) ----- */
+.projeto-card {
+    width: 280px;
+    padding: 30px;
+    text-align: center;
+    background-color: #ffffff;
+    border: 2px solid rgb(88, 32, 178);
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+ 
+.projeto-card h3 {
+    margin: 0 0 10px;
+}
+ 
+/* Botões do card: roxo, igual ao menu */
+.link-projeto {
+    display: inline-block;
+    margin: 10px 5px 0;
+    padding: 8px 18px;
+    font-size: 1rem;
+    background-color: rgb(88, 32, 178);
+    color: #ffffff;
+}
+ 
+/* Sobrescreve o a:hover global, que deixava o botão quase transparente */
+.link-projeto:hover {
+    background-color: rgb(112, 56, 205);
+    color: #ffffff;
+}
+ 
+ 
+/* ----- Habilidades ----- */
+.secao-habilidades {
+    max-width: 900px;
+    margin: 50px auto 30px;
+    padding: 0 1rem;
+    text-align: center;
+}
+ 
+.habilidades-grupos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+ 
+.habilidades-grupo {
+    width: 250px;
+    padding: 24px;
+    background-color: #ffffff;
+    border: 2px solid rgb(88, 32, 178);
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+ 
+.habilidades-grupo h3 {
+    margin: 0 0 12px;
+}
+ 
+.habilidades-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+ 
+.habilidades-lista li {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background-color: rgba(88, 32, 178, 0.1);
+    color: rgb(88, 32, 178);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+ 
+ 
+/* ----- Modo escuro (o seu CSS só deixava h1, h2 e p brancos) ----- */
+body.dark-mode h3 {
+    color: #ffffff;
+}
+ 
+body.dark-mode .subtitulo-projetos {
+    color: #bbbbbb;
+}
+ 
+body.dark-mode .projeto-card,
+body.dark-mode .habilidades-grupo {
+    background-color: #1e1e1e;
+}
+ 
+body.dark-mode .habilidades-lista li {
+    background-color: rgba(173, 255, 47, 0.12);
+    color: #adff2f;
+}
+.botao-curriculo {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 22px;
+    background-color: rgb(88, 32, 178);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.botao-curriculo:hover {
+    background-color: rgb(112, 56, 205);
+    color: #ffffff;
+}
+.curriculo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-basis: 100%;   /* garante uma linha só para o botão */
+}
+
+.botao-curriculo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 0;
+    padding: 10px 22px;
+    background-color: rgb(88, 32, 178);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 8px;
+}
+    
