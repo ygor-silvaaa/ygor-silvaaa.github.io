@@ -347,4 +347,29 @@ body.dark-mode .habilidades-lista li {
     font-weight: 600;
     border-radius: 8px;
 }
-    
+    /* Container que delimita a área da imagem dentro do card */
+.projeto-imagem-container {
+    width: 100%;
+    height: 180px; /* Altura ideal para o mockup aparecer bem */
+    overflow: hidden; /* Corta o que passar dos limites dos cantos */
+    border-radius: 8px; /* Cantos arredondados combinando com o card */
+    margin-bottom: 20px; /* Espaçamento entre a imagem e o título h3 */
+    background-color: #f4f4f9; /* Fundo suave caso a imagem demore a carregar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Controla o comportamento e a suavidade do efeito na imagem */
+.projeto-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Volta para o cover para preencher o espaço lateral */
+    object-position: center 20%; /* 👈 Isso faz o foco subir, mostrando mais a tela do notebook e cortando o teclado embaixo */
+    transition: transform 0.3s ease; /* Transição suave do efeito de zoom */
+}
+
+/* Efeito interativo: Dá um leve zoom na imagem quando passa o mouse no card */
+.projeto-card:hover .projeto-imagem {
+    transform: scale(1.05);
+}
