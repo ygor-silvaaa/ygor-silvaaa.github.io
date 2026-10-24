@@ -24,9 +24,9 @@ if (distance <= 14) {
 }
 
 // 3. Testes no console para validar a logica 
-console.log("Teste 1 (10km, 0 paradas  ): R$ " + calculateBudget(10, 0)); //deve dar 30.00
-console.log("Teste 2 (20km, 0 paradas  ): R$ " + calculateBudget(20, 0)); //deve dar 40.00 (20 * 2)
-console.log("Teste 3 (20km, 2 paradas  ): R$ " + calculateBudget(20, 2)); //deve dar 60.00 (40 + 20)
+console.log("Teste 1 (10km, 0 paradas  ): R$ " + calculateBudget(10, 0)); //deve dar 30,00
+console.log("Teste 2 (20km, 0 paradas  ): R$ " + calculateBudget(20, 0)); //deve dar 40,00 (20 * 2)
+console.log("Teste 3 (20km, 2 paradas  ): R$ " + calculateBudget(20, 2)); //deve dar 60,00 (40 + 20)
 
 // 1. Pegar os elementos da tela do HTML usando os IDs 
 const form = document.getElementById('budget-form');

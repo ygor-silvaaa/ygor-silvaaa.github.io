@@ -1,32 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Calculadora de Orcamento - Entrega</title>
-    </head>
-    <body>
-
-        <h1>Orcamento de Entrega</h1>
-
-        <!-- Formulario para coletar os dados -->
-         <form id="budget-form">
-                                   <!-- Campo para a distancia -->
-             <label for="distance-imput">distancia (<em> KM):</em></label>
-             <input type="number" id="distance-input" min="0" required>
-
-             <br><br>
-
-             <!-- Campo para as Paradas adicionais -->
-              <label for="stops-input">Quantidade de Paradas:</label>
-              <input type="number" id="stops-input" min="0" default="0" required>
-
-              <br><br>
-              <button type="submit" id="calculate-btn">Calcular Orcamento</button>
-         </form>
-              <!-- Local onde o resultado final vai aparecer na tela -->
-               <h2 id="result-display">Total: R$ 0,00</h2>
-               <!-- Vincula o seu arquivo de logica javascript a esta pagina -->
-               <script src="script.js"></script>      
-    </body>
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Orçamento - Entrega</title>
+ 
+    <!-- Estilo do Leaflet, a biblioteca que desenha o mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+ 
+    <!-- NOVO: estilo da calculadora (precisa estar na mesma pasta deste arquivo) -->
+    <link rel="stylesheet" href="calculadora.css">
+</head>
+ 
+<body>
+ 
+    <main class="calculadora">
+ 
+        <a href="../index.html" class="voltar">← Voltar ao portfólio</a>
+ 
+        <h1>Orçamento de Entrega</h1>
+ 
+        <!-- Formulário para coletar os dados -->
+        <form id="budget-form">
+ 
+            <!-- Endereços para a busca automática da distância -->
+            <div class="campo">
+                <label for="origin-input">Endereço de partida</label>
+                <input type="text" id="origin-input" placeholder="Rua, número, cidade, estado">
+            </div>
+ 
+            <div class="campo">
+                <label for="destination-input">Endereço de destino</label>
+                <input type="text" id="destination-input" placeholder="Rua, número, cidade, estado">
+            </div>
+ 
+            <!-- type="button": não envia o formulário, só busca a distância -->
+            <button type="button" id="route-btn" class="botao-secundario">Calcular distância</button>
+            <p id="route-status" aria-live="polite"></p>
+ 
+            <!-- O mapa aparece aqui depois que a rota for encontrada -->
+            <div id="map" hidden></div>
+ 
+            <div class="linha">
+                <!-- Distância: preenchida pela busca, mas pode ser digitada à mão -->
+                <div class="campo">
+                    <label for="distance-input">Distância (km)</label>
+                    <input type="number" id="distance-input" min="0" step="any" required>
+                </div>
+ 
+                <!-- Paradas adicionais -->
+                <div class="campo">
+                    <label for="stops-input">Quantidade de paradas</label>
+                    <input type="number" id="stops-input" min="0" step="1" value="0" required>
+                </div>
+            </div>
+ 
+            <button type="submit" id="calculate-btn" class="botao-principal">Calcular Orçamento</button>
+        </form>
+ 
+        <!-- Local onde o resultado final aparece na tela -->
+        <h2 id="result-display">Total: R$ 0,00</h2>
+ 
+        <!-- Créditos exigidos pelos serviços gratuitos usados -->
+        <p class="creditos">
+            Endereços: Nominatim. Rotas: OSRM. Mapa: Leaflet.
+            Dados © colaboradores do
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>
+            (licença ODbL).
+        </p>
+ 
+    </main>
+ 
+    <!-- Leaflet precisa vir ANTES do rota.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+ 
+    <!-- Lógica do orçamento (já existente) e da busca de rota com mapa -->
+    <script src="script.js"></script>
+    <script src="rota.js"></script>
+</body>
+ 
 </html>
