@@ -18,9 +18,7 @@
  
     <main class="calculadora">
  
-        <a href="../index.html" class="voltar">← Voltar ao portfólio</a>
- 
-        <h1>Orçamento de Entrega</h1>
+            <h1>Orçamento de Entrega</h1>
             
         <!-- Formulário para coletar os dados -->
         <form id="budget-form">
@@ -87,6 +85,11 @@
  
         <!-- Local onde o resultado final aparece na tela -->
         <h2 id="result-display">Total: R$ 0,00</h2>
+
+        <!-- NOVO: Botão para enviar o orçamento no WhatsApp -->
+        <button type="button" id="whatsapp-btn" class="botao-whatsapp" disabled>
+            Enviar orçamento no WhatsApp
+        </button>
  
         <!-- Créditos exigidos pelos serviços gratuitos usados -->
         <p class="creditos">
@@ -106,6 +109,7 @@
     <script src="script.js"></script>
     <script src="rota.js"></script>
        <script src="cep.js"></script>
+       <script src="whatsapp.js"></script>
 </body>
  
 </html>
