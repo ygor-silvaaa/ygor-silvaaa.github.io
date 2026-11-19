@@ -75,7 +75,7 @@
         const resposta = await fetch(`${OSRM_URL}/${caminho}?overview=full&geometries=geojson`);
         if (!resposta.ok) {
             throw new Error("O serviço de rotas não respondeu. Tente de novo em instantes.");
-        }
+        } 
  
         const dados = await resposta.json();
         if (dados.code !== "Ok" || !dados.routes || dados.routes.length === 0) {
@@ -133,19 +133,19 @@
         mostrarStatus("Buscando a rota...");
  
         try {
-            const a = await buscarCoordenadas(origem);
+            const endereco_a = await buscarCoordenadas(origem);
  
             // Nominatim: no máximo 1 pedido por segundo
-            if (a.usouRede) await esperar(1100);
+            if (endereco_a.usouRede) await esperar(1100);
  
-            const b = await buscarCoordenadas(destino);
-            const rota = await buscarRota(a.coordenadas, b.coordenadas);
+            const endereco_b = await buscarCoordenadas(destino);
+            const rota = await buscarRota(endereco_a.coordenadas, endereco_b.coordenadas);
  
             distanceInput.value = rota.km.toFixed(1);
             // Avisa o resto da página, caso algum código escute mudanças no campo
             distanceInput.dispatchEvent(new Event("input", { bubbles: true }));
  
-            mostrarMapa(a.coordenadas, b.coordenadas, rota.geometria);
+            mostrarMapa(endereco_a.coordenadas, endereco_b.coordenadas, rota.geometria);
  
             mostrarStatus(`Distância encontrada: ${rota.km.toFixed(1).replace(".", ",")} km (só ida).`);
         } catch (erro) {
