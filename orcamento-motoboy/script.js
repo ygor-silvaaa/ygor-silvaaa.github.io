@@ -32,20 +32,30 @@ console.log("Teste 3 (20km, 2 paradas  ): R$ " + calculateBudget(20, 2)); //deve
 const form = document.getElementById('budget-form');
 const distanceImput = document.getElementById('distance-input');
 const stopsInput = document.getElementById('stops-input');
+const roundTripInput = document.getElementById('roundtrip-input');
 const resultDisplay = document.getElementById('result-display');
 
 // 2. Escutar o momento em que o usuario envia o formulario (clica no botao)
 form.addEventListener('submit', (event) => {
-// Evita que a pagina recarregue e suma com os dados 
-event.preventDefault();
+    // Evita que a pagina recarregue e suma com os dados 
+    event.preventDefault();
 
-// Captura os valores digitados na tela e converte para numeros 
-const distanceValue = Number(distanceImput.value);
-const stopsValue = Number(stopsInput.value);
+    // Captura os valores digitados na tela e converte para numeros 
+    const distanceValue = Number(distanceImput.value);
+    const stopsValue = Number(stopsInput.value);
 
-// Executa a funcao de calculo que criamos antes passando esses valores 
-const totalOrcamento = calculateBudget(distanceValue, stopsValue);
+    // Se for ida e volta, a distancia cobrada e o dobro
+    const isRoundTrip = roundTripInput.checked;
+    const distanceToCharge = isRoundTrip ? distanceValue * 2 : distanceValue;
 
-// Atualiza o texto na tela com o valor calculado 
-resultDisplay.textContent = "Total: R$ " + totalOrcamento;
+    // Executa a funcao de calculo passando a distancia a cobrar
+    const totalOrcamento = calculateBudget(distanceToCharge, stopsValue);
+
+       // Atualiza o texto na tela com o valor calculado
+    const kmTexto = distanceToCharge.toFixed(1).replace(".", ",");
+    const detalhe = isRoundTrip
+        ? ` (ida e volta: ${kmTexto} km)`
+        : ` (${kmTexto} km)`;
+
+    resultDisplay.textContent = "Total: R$ " + totalOrcamento.replace(".", ",") + detalhe;
 });

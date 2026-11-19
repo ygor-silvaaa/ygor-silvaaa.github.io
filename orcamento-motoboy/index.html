@@ -21,16 +21,34 @@
         <a href="../index.html" class="voltar">← Voltar ao portfólio</a>
  
         <h1>Orçamento de Entrega</h1>
- 
+            
         <!-- Formulário para coletar os dados -->
         <form id="budget-form">
  
-            <!-- Endereços para a busca automática da distância -->
+             <div class="campo">
+             <label for="origin-cep">CEP de partida (opcional)</label>
+             <div class="linha">
+                <input type="text" id="origin-cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
+                <input type="text" id="origin-number" placeholder="Número">
+                </div>
+                <small id="origin-cep-status" aria-live="polite"></small>
+             </div>
+           
+             <!-- Endereços para a busca automática da distância -->
             <div class="campo">
                 <label for="origin-input">Endereço de partida</label>
                 <input type="text" id="origin-input" placeholder="Rua, número, cidade, estado">
             </div>
  
+            <div class="campo">
+            <label for="destination-cep">CEP de destino (opcional)</label>
+            <div class="linha">
+                <input type="text" id="destination-cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
+                <input type="text" id="destination-number" placeholder="Número">
+                </div>
+                <small id="destination-cep-status" aria-live="polite"></small>
+            </div>
+
             <div class="campo">
                 <label for="destination-input">Endereço de destino</label>
                 <input type="text" id="destination-input" placeholder="Rua, número, cidade, estado">
@@ -49,6 +67,13 @@
                     <label for="distance-input">Distância (km)</label>
                     <input type="number" id="distance-input" min="0" step="any" required>
                 </div>
+
+                <div class="campo">
+                    <label>
+                    <input type="checkbox" id="roundtrip-input">
+                    Ida e volta
+                   </label>
+                   </div>
  
                 <!-- Paradas adicionais -->
                 <div class="campo">
@@ -80,6 +105,7 @@
     <!-- Lógica do orçamento (já existente) e da busca de rota com mapa -->
     <script src="script.js"></script>
     <script src="rota.js"></script>
+       <script src="cep.js"></script>
 </body>
  
 </html>
