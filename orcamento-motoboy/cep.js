@@ -1,14 +1,9 @@
-console.log("cep.js carregou!");
-
 // cep.js
 // Preenche os campos de endereço a partir do CEP (usa a API gratuita ViaCEP).
-// prefixo = "origin" ou "destination" (bate com os ids do HTML)
 
-function configurarCep(prefixo) {
-    const cepEl = document.getElementById(`${prefixo}-cep`);
-    const numEl = document.getElementById(`${prefixo}-number`);
-    const enderecoEl = document.getElementById(`${prefixo}-input`);
-    const statusEl = document.getElementById(`${prefixo}-cep-status`);
+// Liga um grupo de campos (CEP, número, endereço e mensagem) ao ViaCEP.
+// Serve para a partida, o destino e cada parada.
+function configurarCepEmElementos(cepEl, numEl, enderecoEl, statusEl) {
     let dados = null;
 
     function montarEndereco() {
@@ -24,6 +19,8 @@ function configurarCep(prefixo) {
         partes.push(dados.localidade, dados.uf);
 
         enderecoEl.value = partes.filter(Boolean).join(", ");
+        // Avisa quem escuta o campo (a contagem de paradas, por exemplo)
+        enderecoEl.dispatchEvent(new Event("input", { bubbles: true }));
     }
 
     async function buscarCep() {
@@ -63,6 +60,16 @@ function configurarCep(prefixo) {
 
     // Se o número mudar, atualiza o endereço
     numEl.addEventListener("input", montarEndereco);
+}
+
+// Versão para a partida e o destino (campos com id fixo no HTML)
+function configurarCep(prefixo) {
+    configurarCepEmElementos(
+        document.getElementById(`${prefixo}-cep`),
+        document.getElementById(`${prefixo}-number`),
+        document.getElementById(`${prefixo}-input`),
+        document.getElementById(`${prefixo}-cep-status`)
+    );
 }
 
 configurarCep("origin");

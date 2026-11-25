@@ -373,3 +373,51 @@ body.dark-mode .habilidades-lista li {
 .projeto-card:hover .projeto-imagem {
     transform: scale(1.05);
 }
+/* Linha da parada: letra + CEP + número + remover, lado a lado */
+.parada-linha {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.parada-linha .stop-cep,
+.parada-linha .stop-number {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.parada-linha button {
+    flex-shrink: 0;
+    width: auto;
+    padding: 6px 10px;
+}
+
+/* Bolinha com a letra da parada (formulário) */
+.parada .parada-letra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Marcador redondo com a letra (mapa) */
+.marcador-letra span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 700;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}

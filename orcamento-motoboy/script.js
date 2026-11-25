@@ -44,9 +44,10 @@ form.addEventListener('submit', (event) => {
     const distanceValue = Number(distanceImput.value);
     const stopsValue = Number(stopsInput.value);
 
-    // Se for ida e volta, a distancia cobrada e o dobro
+    // Se a rota ja foi calculada com a volta incluida, nao dobra de novo
+    const voltaJaIncluida = distanceImput.dataset.voltaIncluida === "true";
     const isRoundTrip = roundTripInput.checked;
-    const distanceToCharge = isRoundTrip ? distanceValue * 2 : distanceValue;
+    const distanceToCharge = (isRoundTrip && !voltaJaIncluida) ? distanceValue * 2 : distanceValue;
 
     // Executa a funcao de calculo passando a distancia a cobrar
     const totalOrcamento = calculateBudget(distanceToCharge, stopsValue);

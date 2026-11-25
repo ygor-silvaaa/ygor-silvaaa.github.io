@@ -34,7 +34,7 @@
            
              <!-- Endereços para a busca automática da distância -->
             <div class="campo">
-                <label for="origin-input">Endereço de partida</label>
+                <label for="origin-input">A - Endereço de partida</label>
                 <input type="text" id="origin-input" placeholder="Rua, número, cidade, estado">
             </div>
  
@@ -48,9 +48,15 @@
             </div>
 
             <div class="campo">
-                <label for="destination-input">Endereço de destino</label>
+                <label for="destination-input">B - Endereço de destino</label>
                 <input type="text" id="destination-input" placeholder="Rua, número, cidade, estado">
             </div>
+
+            <div class="campo">
+    <label>Paradas adicionais (depois do destino)</label>
+    <div id="stops-list"></div>
+    <button type="button" id="add-stop-btn" class="botao-secundario">+ Adicionar parada</button>
+</div>
  
             <!-- type="button": não envia o formulário, só busca a distância -->
             <button type="button" id="route-btn" class="botao-secundario">Calcular distância</button>
@@ -108,8 +114,9 @@
     <!-- Lógica do orçamento (já existente) e da busca de rota com mapa -->
     <script src="script.js"></script>
     <script src="rota.js"></script>
-       <script src="cep.js"></script>
-       <script src="whatsapp.js"></script>
+    <script src="cep.js"></script>
+    <script src="whatsapp.js"></script>
+    <script src="paradas.js"></script>
 </body>
  
 </html>
