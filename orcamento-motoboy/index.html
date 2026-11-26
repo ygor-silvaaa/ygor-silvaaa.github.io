@@ -22,8 +22,17 @@
             
         <!-- Formulário para coletar os dados -->
         <form id="budget-form">
- 
-             <div class="campo">
+           
+             <!-- Endereços para a busca automática da distância -->
+            <div class="campo">
+                <label for="origin-input">A - Endereço de partida</label>
+                <input type="text" id="origin-input" placeholder="Rua, número, cidade, estado">
+
+                <button type="button" id="use-location-btn" class="botao-secundario">📍 Usar minha localização</button>
+            <small id="origin-location-status" aria-live="polite"></small>
+            </div>
+
+            <div class="campo">
              <label for="origin-cep">CEP de partida (opcional)</label>
              <div class="linha">
                 <input type="text" id="origin-cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
@@ -31,14 +40,13 @@
                 </div>
                 <small id="origin-cep-status" aria-live="polite"></small>
              </div>
-           
-             <!-- Endereços para a busca automática da distância -->
-            <div class="campo">
-                <label for="origin-input">A - Endereço de partida</label>
-                <input type="text" id="origin-input" placeholder="Rua, número, cidade, estado">
-            </div>
  
             <div class="campo">
+                <label for="destination-input">B - Endereço de destino</label>
+                <input type="text" id="destination-input" placeholder="Rua, número, cidade, estado">
+            </div>
+
+             <div class="campo">
             <label for="destination-cep">CEP de destino (opcional)</label>
             <div class="linha">
                 <input type="text" id="destination-cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
@@ -48,15 +56,10 @@
             </div>
 
             <div class="campo">
-                <label for="destination-input">B - Endereço de destino</label>
-                <input type="text" id="destination-input" placeholder="Rua, número, cidade, estado">
+            <label>Paradas adicionais (depois do destino)</label>
+            <div id="stops-list"></div>
+            <button type="button" id="add-stop-btn" class="botao-secundario">+ Adicionar parada</button>
             </div>
-
-            <div class="campo">
-    <label>Paradas adicionais (depois do destino)</label>
-    <div id="stops-list"></div>
-    <button type="button" id="add-stop-btn" class="botao-secundario">+ Adicionar parada</button>
-</div>
  
             <!-- type="button": não envia o formulário, só busca a distância -->
             <button type="button" id="route-btn" class="botao-secundario">Calcular distância</button>
@@ -65,7 +68,7 @@
             <!-- O mapa aparece aqui depois que a rota for encontrada -->
             <div id="map" hidden></div>
  
-            <div class="linha">
+                       <div class="linha">
                 <!-- Distância: preenchida pela busca, mas pode ser digitada à mão -->
                 <div class="campo">
                     <label for="distance-input">Distância (km)</label>
@@ -74,16 +77,13 @@
 
                 <div class="campo" style="display: flex; align-items: center; padding-top: 22px;">
                     <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                    <input type="checkbox" id="roundtrip-input" style="width: auto; margin: 0;">
-                    Ida e volta
-                   </label>
-                   </div>
- 
-                <!-- Paradas adicionais -->
-                <div class="campo">
-                    <label for="stops-input">Quantidade de paradas</label>
-                    <input type="number" id="stops-input" min="0" step="1" value="0" required>
+                        <input type="checkbox" id="roundtrip-input" style="width: auto; margin: 0;">
+                        Ida e volta
+                    </label>
                 </div>
+
+                <!-- Paradas: contadas automaticamente pelos endereços adicionados (campo escondido) -->
+                <input type="hidden" id="stops-input" value="0">
             </div>
  
             <button type="submit" id="calculate-btn" class="botao-principal">Calcular Orçamento</button>
@@ -117,6 +117,7 @@
     <script src="cep.js"></script>
     <script src="whatsapp.js"></script>
     <script src="paradas.js"></script>
+    <script src="localizacao.js"></script>
 </body>
  
 </html>

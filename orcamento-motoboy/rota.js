@@ -156,6 +156,14 @@
 
         const idaEVolta = roundTripInput.checked;
 
+                // Se a partida veio do botão "Usar minha localização", usa as coordenadas exatas
+        if (originInput.dataset.lat && originInput.value.trim() === originInput.dataset.texto) {
+            cacheEnderecos.set(origem.toLowerCase(), {
+                lat: Number(originInput.dataset.lat),
+                lon: Number(originInput.dataset.lon),
+            });
+        }
+
         // Ordem da rota: partida -> destino -> paradas (mesma ordem da tela)
         const enderecos = [origem, destino, ...paradas];
 
