@@ -139,6 +139,16 @@
             console.error("Não foi possível desenhar o mapa:", erro);
         }
     }
+            // Se o endereço do campo veio do botão de localização, guarda as coordenadas exatas no cache
+        function usarCoordenadasDoGps(campo) {
+        const texto = campo.value.trim();
+        if (campo.dataset.lat && texto === campo.dataset.texto) {
+            cacheEnderecos.set(texto.toLowerCase(), {
+                lat: Number(campo.dataset.lat),
+                lon: Number(campo.dataset.lon),
+            });
+        }
+    }
 
             routeBtn.addEventListener("click", async () => {
         const origem = originInput.value.trim();
@@ -156,13 +166,9 @@
 
         const idaEVolta = roundTripInput.checked;
 
-                // Se a partida veio do botão "Usar minha localização", usa as coordenadas exatas
-        if (originInput.dataset.lat && originInput.value.trim() === originInput.dataset.texto) {
-            cacheEnderecos.set(origem.toLowerCase(), {
-                lat: Number(originInput.dataset.lat),
-                lon: Number(originInput.dataset.lon),
-            });
-        }
+        // Se a partida ou o destino vieram do botão "Usar minha localização", usa as coordenadas exatas
+        usarCoordenadasDoGps(originInput);
+        usarCoordenadasDoGps(destinationInput);
 
         // Ordem da rota: partida -> destino -> paradas (mesma ordem da tela)
         const enderecos = [origem, destino, ...paradas];

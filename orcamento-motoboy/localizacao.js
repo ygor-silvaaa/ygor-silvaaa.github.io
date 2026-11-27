@@ -1,15 +1,7 @@
 // localizacao.js
-// Preenche o endereço de partida com a localização atual do aparelho.
+// Preenche o endereço de partida (A) ou de destino (B) com a localização atual do aparelho.
 (function () {
     "use strict";
-
-    const btn = document.getElementById("use-location-btn");
-    const statusEl = document.getElementById("origin-location-status");
-    const originInput = document.getElementById("origin-input");
-
-    function mostrar(texto) {
-        statusEl.textContent = texto;
-    }
 
     // Nominatim (reverso): transforma latitude/longitude em endereço
     async function buscarEnderecoDasCoordenadas(lat, lon) {
@@ -46,44 +38,58 @@
         return "Não foi possível pegar sua localização.";
     }
 
-    btn.addEventListener("click", () => {
-        if (!("geolocation" in navigator)) {
-            mostrar("Este navegador não permite usar a localização.");
-            return;
+    // Liga um botão de localização a um campo de endereço
+    function configurarLocalizacao(idBotao, idStatus, idEndereco) {
+        const btn = document.getElementById(idBotao);
+        const statusEl = document.getElementById(idStatus);
+        const enderecoInput = document.getElementById(idEndereco);
+
+        function mostrar(texto) {
+            statusEl.textContent = texto;
         }
 
-        btn.disabled = true;
-        mostrar("Buscando sua localização...");
+        btn.addEventListener("click", () => {
+            if (!("geolocation" in navigator)) {
+                mostrar("Este navegador não permite usar a localização.");
+                return;
+            }
 
-        navigator.geolocation.getCurrentPosition(
-            async (posicao) => {
-                const lat = posicao.coords.latitude;
-                const lon = posicao.coords.longitude;
+            btn.disabled = true;
+            mostrar("Buscando sua localização...");
 
-                let texto = "";
-                try {
-                    texto = await buscarEnderecoDasCoordenadas(lat, lon);
-                } catch (erro) {
-                    texto = "";
-                }
-                // Se não achou o endereço escrito, a rota ainda funciona pelas coordenadas
-                if (!texto) texto = "Minha localização atual";
+            navigator.geolocation.getCurrentPosition(
+                async (posicao) => {
+                    const lat = posicao.coords.latitude;
+                    const lon = posicao.coords.longitude;
 
-                originInput.value = texto;
-                // Guarda as coordenadas exatas (o rota.js usa elas em vez de buscar o texto de novo)
-                originInput.dataset.lat = lat;
-                originInput.dataset.lon = lon;
-                originInput.dataset.texto = texto;
-                originInput.dispatchEvent(new Event("input", { bubbles: true }));
+                    let texto = "";
+                    try {
+                        texto = await buscarEnderecoDasCoordenadas(lat, lon);
+                    } catch (erro) {
+                        texto = "";
+                    }
+                    // Se não achou o endereço escrito, a rota ainda funciona pelas coordenadas
+                    if (!texto) texto = "Minha localização atual";
 
-                mostrar("Localização preenchida. Confira o endereço.");
-                btn.disabled = false;
-            },
-            (erro) => {
-                mostrar(mensagemDeErro(erro));
-                btn.disabled = false;
-            },
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
-        );
-    });
+                    enderecoInput.value = texto;
+                    // Guarda as coordenadas exatas (o rota.js usa elas em vez de buscar o texto de novo)
+                    enderecoInput.dataset.lat = lat;
+                    enderecoInput.dataset.lon = lon;
+                    enderecoInput.dataset.texto = texto;
+                    enderecoInput.dispatchEvent(new Event("input", { bubbles: true }));
+
+                    mostrar("Localização preenchida. Confira o endereço.");
+                    btn.disabled = false;
+                },
+                (erro) => {
+                    mostrar(mensagemDeErro(erro));
+                    btn.disabled = false;
+                },
+                { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+            );
+        });
+    }
+
+    configurarLocalizacao("use-location-btn", "origin-location-status", "origin-input");
+    configurarLocalizacao("use-destination-location-btn", "destination-location-status", "destination-input");
 })();

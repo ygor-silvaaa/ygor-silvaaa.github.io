@@ -25,21 +25,41 @@
         });
     }
 
+    // Lê os endereços das paradas adicionais (.stop-address) e atribui letras a partir de C
+    function obterEnderecosParadas() {
+        const campos = Array.from(document.querySelectorAll(".stop-address"));
+        return campos
+            .map((campo, indice) => {
+                const endereco = campo.value ? campo.value.trim() : "";
+                const letra = String.fromCharCode(67 + indice); // 67 = 'C', 68 = 'D', ...
+                return { letra, endereco };
+            })
+            .filter((parada) => parada.endereco.length > 0);
+    }
+
     whatsappBtn.addEventListener("click", () => {
         const origem = originInput ? originInput.value.trim() : "";
         const destino = destinationInput ? destinationInput.value.trim() : "";
         const distancia = distanceInput ? distanceInput.value.trim() : "0";
         const idaEVolta = roundtripInput && roundtripInput.checked ? "Sim" : "Não";
-        const paradas = stopsInput ? stopsInput.value.trim() : "0";
+        const paradasExtras = obterEnderecosParadas();
+        const totalParadas = stopsInput && stopsInput.value.trim() !== ""
+            ? stopsInput.value.trim()
+            : String(paradasExtras.length);
         const totalTexto = resultDisplay ? resultDisplay.textContent.trim() : "Total: R$ 0,00";
+
+        const linhasParadas = paradasExtras.map(
+            (parada) => `• Parada ${parada.letra}: ${parada.endereco}`
+        );
 
         const linhas = [
             "*Orçamento de Entrega*",
             origem ? `• Partida: ${origem}` : null,
             destino ? `• Destino: ${destino}` : null,
+            ...linhasParadas,
             `• Distância: ${distancia} km`,
             `• Ida e volta: ${idaEVolta}`,
-            `• Paradas adicionais: ${paradas}`,
+            `• Paradas adicionais: ${totalParadas}`,
             `*${totalTexto}*`,
         ].filter(Boolean);
 
